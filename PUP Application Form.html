@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="UTF-8" />
+   <title>ID Application</title>
+   <link rel="stylesheet" href="style.css">
+   </head>
+
+ <body>
+   <div class="homepage">
+     <h1>POLYTECHNIC UNIVERSITY OF THE PHILIPPINES</h1>
+     <img src="https://ww2.freelogovectors.net/wp-content/uploads/2017/05/pup-logo-Polytechnic_University_of_the_Philippines.png" alt="PUP Logo" height="100" width="100" class="centered" />
+   </div>
+ 
+   <h3>STUDENT ID CARD APPLICATION</h3>
+   <hr width="100%" />
+
+
+    <form action="https://script.google.com/macros/s/AKfycbw_Y-rVJzaGJMT3WjpZKXRNW7zbbasNM-a5_mi-n4gZiMHFu0v9qzOlTh1Ff20cceTU/exec" method="POST">
+     <div class="categories">
+       <div class="layer">
+         <div>
+           <label for="transferee">Transferee</label>
+           <input type="checkbox" id="transferee" name="transferee">
+         </div>
+         <div>
+           <label for="lateFilling">Late Filling</label>
+           <input type="checkbox" id="lateFilling" name="lateFilling">
+         </div>
+         <div>
+           <label for="shiftee">Shiftee</label>
+           <input type="checkbox" id="shiftee" name="shiftee">
+         </div>
+         <div>
+           <label for="damaged">Damaged</label>
+           <input type="checkbox" id="damaged" name="damaged">
+         </div>
+       </div>
+  
+       <div class="layer">
+         <div>
+           <label for="lhs">LHS</label>
+           <input type="checkbox" id="lhs" name="lhs">
+         </div>
+         <div>
+           <label for="undergrad">Undergrad</label>
+           <input type="checkbox" id="undergrad" name="undergrad">
+         </div>
+         <div>
+           <label for="graduateSchool">Graduate School</label>
+           <input type="checkbox" id="graduateSchool" name="graduateSchool">
+         </div>
+         <div>
+           <label for="openUniversity">Open University</label>
+           <input type="checkbox" id="openUniversity" name="openUniversity">
+         </div>
+       </div>
+  
+       <div class="layer">
+         <div>
+           <label for="oldID">Old ID</label>
+           <input type="checkbox" id="oldID" name="oldID">
+         </div>
+         <div>
+           <label for="correction">Correction of Entry</label>
+           <input type="checkbox" id="correction" name="correction">
+         </div>
+         <div>
+           <label for="collegeOfLaw">College of Law</label>
+           <input type="checkbox" id="collegeOfLaw" name="collegeOfLaw">
+         </div>
+         <div>
+           <label for="instituteOfTechnology">Institute of Technology</label>
+           <input type="checkbox" id="instituteOfTechnology" name="instituteOfTechnology">
+         </div>
+       </div>
+     </div>
+
+
+     <label for="studentNumber">Student Number:</label>
+   <input type="text" id="studentNumber" name="studentNumber" required>
+
+
+   <label for="firstName">First Name:</label>
+   <input type="text" id="firstName" name="firstName" required>
+
+
+   <label for="middleName">Middle Name:</label>
+   <input type="text" id="middleName" name="middleName">
+
+
+   <label for="lastName">Last Name:</label>
+   <input type="text" id="lastName" name="lastName" required>
+
+
+   <label>Gender:</label>
+   <div id="gender">
+     <input type="radio" id="male" name="gender" value="Male">
+     <label for="male">Male</label>
+
+
+     <input type="radio" id="female" name="gender" value="Female">
+     <label for="female">Female</label>
+   </div>
+
+
+   <label for="birthday">Date of Birth:</label>
+   <input type="date" id="birthday" name="birthday" required>
+
+
+   <label for="college">College:</label>
+   <input type="text" id="college" name="college" required>
+
+
+   <label for="course">Course, Yr. & Section:</label>
+   <input type="text" id="course" name="course" required>
+
+
+   <label for="homeAddress">Home Address:</label>
+   <textarea id="homeAddress" name="HomeAddress" rows="3"></textarea>
+
+
+   <label for="phone">Phone/Mobile No.:</label>
+   <input type="tel" id="phone" name="phone" required>
+
+
+   <label for="email">Email Address:</label>
+   <input type="email" id="email" name="email" required>
+
+
+   <label for="emergencyContact">In case of emergency, please notify</label>
+
+
+   <label for="emergencyName">Complete Name:</label>
+   <input type="text" id="emergencyName" name="emergencyName">
+
+
+   <label for="emergencyPhone">Phone/Mobile No.:</label>
+   <input type="tel" id="emergencyPhone" name="emergencyPhone">
+
+
+   <label for="emergencyAddress">Address:</label>
+   <textarea id="emergencyAddress" name="emergencyAddress" rows="3"></textarea>
+   
+   <span id="errorStudentNumber" class="error"></span>
+    <span id="errorPhone" class="error"></span>
+    <span id="errorEmail" class="error"></span> 
+    <span id="errorSubmit" class="error"></span>
+
+    <div id="successMessage" class="success"></div>
+
+   <button type="submit" onclick="return submitForm();">Submit Application</button>
+   </form>
+
+   <script>
+    function validateForm() {
+      var studentNumber = document.getElementById('studentNumber').value;
+      var phoneNumber = document.getElementById('phone').value;
+      var email = document.getElementById('email').value;
+  
+      var errorStudentNumber = document.getElementById('errorStudentNumber');
+      var errorPhone = document.getElementById('errorPhone');
+      var errorEmail = document.getElementById('errorEmail');
+  
+      errorStudentNumber.textContent = '';
+      errorPhone.textContent = '';
+      errorEmail.textContent = '';
+  
+      if (!/^\d{4}-\d{5}-[A-Z]{2}-[0-9]$/.test(studentNumber)) {
+        errorStudentNumber.textContent = 'Please enter a valid student number in the format: YYYY-NNNNN-MN-0';
+        return false;
+      }
+
+      if (!/^\d{11}$/.test(phoneNumber)) {
+        errorPhone.textContent = 'Please enter a valid 11-digit phone number (numeric only)';
+        return false;
+      }
+  
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errorEmail.textContent = 'Please enter a valid email address';
+        return false;
+      }
+  
+      return true;
+    }
+    function submitForm() {
+  if (validateForm()) {
+    document.getElementById('errorSubmit').textContent = '';
+
+    var requiredFields = document.querySelectorAll('[required]');
+    var isValid = true;
+
+    for (var i = 0; i < requiredFields.length; i++) {
+      var field = requiredFields[i];
+      if (field.value.trim() === '') {
+       
+        var fieldName = field.getAttribute('name');
+        document.getElementById('errorSubmit').textContent = 'Please fill out the field: ' + fieldName;
+        isValid = false;
+        break; 
+      }
+    }
+    if (isValid) {
+      var successMessage = "Your ID Application was successful. You will receive an email after 2 working days. -PUP ADMINISTRATOR";
+          document.getElementById('successMessage').textContent = successMessage;
+      var confirmationMessage = "Please confirm the entered details:\n\n";
+      confirmationMessage += "Student Number: " + document.getElementById('studentNumber').value + "\n";
+      confirmationMessage += "Phone: " + document.getElementById('phone').value + "\n";
+      confirmationMessage += "Email: " + document.getElementById('email').value + "\n";
+
+      if (confirm(confirmationMessage)) {
+        document.querySelector('form').submit();
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  } else {
+    document.getElementById('errorSubmit').textContent = 'Please ensure all information is valid before submitting.';
+    return false;
+  }
+}
+
+  </script>
+  
+  </body>
+</html>
+
+
+
